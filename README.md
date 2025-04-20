@@ -1,9 +1,3 @@
----
-layout: page
-title: Recipes and Reviews Analysis
-description: Analysis of a recipe and review dataset
----
-
 # Introduction
 
 This page details my investigation of a portion of the **Food.com Recipes and Interactions** dataset. 
