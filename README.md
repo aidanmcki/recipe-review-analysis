@@ -64,17 +64,17 @@ This is the head of the cleaned dataset, with just the relevant columns. In tota
 
 ### Univariate Analysis
 
-Embedded below is a plot of the distribution of average ratings for my cleaned dataset.
+Embedded below is a plot of the distribution of average ratings for my cleaned dataset. This is a visualization of the data I want to predict when answering my question.
 
 <iframe src="assets/ratings_distribution.html" width="800" height="600" frameborder="0"> </iframe>
 
-Notice that the vast majority of the average reviews are clustered in the 4-5 range. 
-We can also still see some spikes at the whole numbers, which were even more pronounced before cleaning.
-
+Notice that the vast majority of the average reviews are clustered in the 4-5 range, which means most of my later predictions will likely be in this range. We can also still see some spikes at the whole numbers, which were even more pronounced before cleaning.
 
 ### Bivariate Analysis
 
+Embedded below is a scatter plot of average rating vs. number of steps in a recipe.
 
+<iframe src="assets/rating_vs_steps.html" width="800" height="600" frameborder="0"> </iframe>
 
 ### Interesting Aggregates
 
