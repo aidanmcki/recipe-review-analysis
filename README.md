@@ -64,6 +64,8 @@ This is the head of the cleaned dataset, with just the relevant columns.
 
 ### Univariate Analysis
 
+Embedded below is a plot of the distribution of average ratings for my cleaned dataset.
+
 
 
 ### Bivariate Analysis
