@@ -1,6 +1,6 @@
 # Introduction
 
-### Topic
+#### Topic
 
 This page details my investigation of a portion of the **[Food.com Recipes and Interactions](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions/data)** dataset. 
 I'm attempting to answer the question:
@@ -8,7 +8,7 @@ I'm attempting to answer the question:
 
 I hope my analysis will reveal ideas about what kinds of recipes get rated highly, which may help writers create better performing recipes, as well as readers to recognize biases in others' reviews.
 
-### Dataset Details
+#### Dataset Details
 
 This project technically covers two datasets, described below
 
@@ -29,7 +29,7 @@ This project technically covers two datasets, described below
 
 # Data Cleaning and Exploratory Data Analysis
 
-### Data Cleaning
+#### Data Cleaning
 
 To work on my main question, I needed to use the ratings dataset to get each recipe's average rating.
 I combined the two datasets by left merging recipes and reviews. 
@@ -62,7 +62,7 @@ This is the head of the cleaned dataset, with just the relevant columns. In tota
 | 5       | 6       | 6             | [\'in a blender combine coffee with...        | 8            | 5          |
 | 50      | 12      | 13            | [\'to make the fish: place the fish...        | 5            | 4          |
 
-### Univariate Analysis
+#### Univariate Analysis
 
 Embedded below is a plot of the distribution of average ratings for my cleaned dataset. This is a visualization of the data I want to predict when answering my question.
 
@@ -70,7 +70,7 @@ Embedded below is a plot of the distribution of average ratings for my cleaned d
 
 Notice that the vast majority of the average reviews are clustered in the 4-5 range, which means most of my later predictions will likely be in this range. We can also still see some spikes at the whole numbers, which were even more pronounced before cleaning.
 
-### Bivariate Analysis
+#### Bivariate Analysis
 
 Embedded below is a scatter plot of average rating vs. number of steps in a recipe.
 
@@ -78,22 +78,22 @@ Embedded below is a scatter plot of average rating vs. number of steps in a reci
 
 Notice that there is a notion of a quadratic shape in the plot. This will be relevant in my final predictive model.
 
-### Interesting Aggregates
+#### Interesting Aggregates
 
 Below is pivot table displaying average ratings for different cook time and ingredient count bins.
 
-| time\ingredient |     0-4 |     5-9 |   10-14 |   15-19 |     20+ |
-|:----------------|--------:|--------:|--------:|--------:|--------:|
-| under 15m       |  4.7842 | 4.75393 | 4.79244 | 4.76135 |   4.875 |   
-| 15-30m          | 4.75857 | 4.73917 | 4.74547 | 4.70489 | 4.84335 |
-| 30-60m          | 4.74094 | 4.71681 | 4.72456 | 4.71531 | 4.79394 |
-| 1-2hrs          | 4.79623 | 4.70899 | 4.73261 | 4.78278 | 4.86265 |
-| over 2hrs       | 4.65185 | 4.67085 | 4.64384 | 4.67743 | 4.70984 |
+| time\ingredients |     0-4 |     5-9 |   10-14 |   15-19 |     20+ |
+|:-----------------|--------:|--------:|--------:|--------:|--------:|
+| under 15m        |  4.7842 | 4.75393 | 4.79244 | 4.76135 |   4.875 |   
+| 15-30m           | 4.75857 | 4.73917 | 4.74547 | 4.70489 | 4.84335 |
+| 30-60m           | 4.74094 | 4.71681 | 4.72456 | 4.71531 | 4.79394 |
+| 1-2hrs           | 4.79623 | 4.70899 | 4.73261 | 4.78278 | 4.86265 |
+| over 2hrs        | 4.65185 | 4.67085 | 4.64384 | 4.67743 | 4.70984 |
 
 We can see some slight trends here, namely in the lower ratings for long recipes, and the higher ratings for more complex recipes. 
 Note that the trends are indeed subtle, to help set up expectations for later results.
 
-### Imputation
+#### Imputation
 
 To be cautious, all ratings with a value of **0** were replaced with **NaN**, and all rows with a **NaN** rating were excluded. 
 However, it turns out that there were no **0** or **NaN** values in the portion of the recipes dataset that I used. 
@@ -104,7 +104,7 @@ For my final prediction problem, my goal is
 
 > To predict **ratings of recipes** by their steps, cook time, and ingredient count using regression.
 
-### Reasoning
+#### Reasoning
 
 I chose to predict ratings as my response variable, since I feel like it's the most relevant metric to people who are writing and reading recipes online.
 In my experience, it's the first number I look at when I'm looking for a recipe, and if I published my own, I'd certainly care about how my recipe is rated by others.
@@ -112,7 +112,7 @@ In my experience, it's the first number I look at when I'm looking for a recipe,
 I'm imagining that my results may be useful to someone looking to *publish* a recipe, so it makes sense that they will have the
 steps, cook time, and ingredient count of their recipe available to use to predict their future rating.
 
-### Evaluation
+#### Evaluation
 
 To get a detailed overview, I will be evaluating my models with **Mean Squared Error**, **Mean Absolute Error**, and **R<sup>2</sup> Score**. 
 MSE is a standard metric to evaluate regression models, MAE is nice because it's in the same scale as the ratings, and
@@ -120,7 +120,7 @@ R<sup>2</sup> is valuable since it tells us how much of the variance in the data
 
 # Baseline Model
 
-
+#### Model Details
 
 # Final Model
 

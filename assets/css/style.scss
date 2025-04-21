@@ -4,16 +4,21 @@
 @import "{{ site.theme }}";
 
 .inner {
-  max-width: 120px;
-  width: 90%;
+  max-width: 120px !important;
+  width: 90% !important;
 }
 
 #container {
-  width: 100%;
-  max-width: none;
+  width: 100% !important;
+  max-width: none !important;
 }
 
 header, footer {
-  width: 100%;
-  max-width: none;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+iframe {
+  margin-bottom: 10px !important;
+  display: block;
 }
