@@ -112,6 +112,9 @@ In my experience, it's the first number I look at when I'm looking for a recipe,
 I'm imagining that my results may be useful to someone looking to *publish* a recipe, so it makes sense that they will have the
 steps, cook time, and ingredient count of their recipe available to use to predict their future rating.
 
+I'm treating the 1-5 ratings as a continuous scale, so I want to use regression to capture incremental differences and predict precise
+numerical outcomes.
+
 ##### Evaluation
 
 To get a detailed overview, I will be evaluating my models with **Mean Squared Error**, **Mean Absolute Error**, and **R<sup>2</sup> Score**. 
