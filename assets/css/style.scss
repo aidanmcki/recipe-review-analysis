@@ -1,0 +1,19 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.inner {
+  max-width: 120px;
+  width: 90%;
+}
+
+#container {
+  width: 100%;
+  max-width: none;
+}
+
+header, footer {
+  width: 100%;
+  max-width: none;
+}

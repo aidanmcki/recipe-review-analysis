@@ -14,18 +14,18 @@ This project technically covers two datasets, described below
 
 - The **recipes** dataset contains 83,782 rows and 12 columns. The dataset contains these relevant columns. 
 
-| Column        | Type    | Description                        |
-|:--------------|:--------|:-----------------------------------|
-| minutes       | Integer | Minutes to prepare recipe          |
-| n_steps       | Integer | Number of steps in recipe          |
-| n_ingredients | Integer | Number of ingredients in recipe    |
-| step          | String  | Text for recipe steps, in order                        |
+| Column        | Type    | Description                               |
+|:--------------|:--------|:------------------------------------------|
+| minutes       | Integer | Minutes to prepare the recipe             |
+| n_steps       | Integer | Number of steps in the recipe             |
+| n_ingredients | Integer | Number of ingredients in the recipe       |
+| step          | String  | Text for recipe steps, in an ordered list |
 
 - The **reviews** dataset contains 731,927 rows and 5 columns. The dataset contains these relevant columns.
 
-| Column        | Type    | Description       |
-|:--------------|:--------|:------------------|
-| rating       | Integer | Rating given; 1-5 |
+| Column | Type    | Description       |
+|:-------|:--------|:------------------|
+| rating | Integer | Rating given; 1-5 |
 
 # Data Cleaning and Exploratory Data Analysis
 
@@ -54,13 +54,13 @@ It's safe to say that my analysis was only possible with these exclusions.
 
 This is the head of the cleaned dataset, with just the relevant columns. In total, it has 11,026 rows.
 
-| minutes | n_steps | n_ingredients | steps                                                                                                                                 | review_count | avg_rating |
-|---------|----|----|---------------------------------------------------------------------------------------------------------------------------------------|----|----|
-| 75      | 6 | 6 | [\'in a bowl combine eggs , sugar , flour and milk\', \'grease a stoneware dish with...]                                              | 6 | 4.33333 |
-| 5       | 2 | 4       | [\'just mix together ouzo and orange juice and pour over ice in a collins glass\', \'garnish with an orange slice and get friendly\'] | 10      | 4.8 |
-| 40      | 8 |  5      | [\'preheat oven to 350 degrees\', \'in mixing bowl , first combine the sour cream and vegetable soup mix...]                          |  12     | 4.83333 |
-| 5       | 6 | 6       | [\'in a blender combine coffee with ice cream and chocolate syrup\', \'blend until smooth\', \'add in sugar...]                       | 8       | 5 |
-| 50 | 12 | 13      | [\'to make the fish: place the fish in a shallow baking dish and sprinkle with the lime juice , paprika , salt...]                    | 5       | 4 |
+| minutes | n_steps | n_ingredients | steps                                         | review_count | avg_rating |
+|---------|---------|---------------|-----------------------------------------------|--------------|------------|
+| 75      | 6       | 6             | [\'in a bowl combine eggs , sugar...          | 6            | 4.33333    |
+| 5       | 2       | 4             | [\'just mix together ouzo and orange juice... | 10           | 4.8        |
+| 40      | 8       | 5             | [\'preheat oven to 350 degrees...             | 12           | 4.83333    |
+| 5       | 6       | 6             | [\'in a blender combine coffee with...        | 8            | 5          |
+| 50      | 12      | 13            | [\'to make the fish: place the fish...        | 5            | 4          |
 
 ### Univariate Analysis
 
@@ -76,9 +76,22 @@ Embedded below is a scatter plot of average rating vs. number of steps in a reci
 
 <iframe src="assets/rating_vs_steps.html" width="800" height="600" frameborder="0"> </iframe>
 
+Notice that there is a notion of a quadratic shape in the plot. This will be relevant in my final predictive model.
+
 ### Interesting Aggregates
 
+Below is pivot table displaying average ratings for different cook time and ingredient count bins.
 
+| time\ingredient |     0-4 |     5-9 |   10-14 |   15-19 |     20+ |
+|:----------------|--------:|--------:|--------:|--------:|--------:|
+| under 15m       |  4.7842 | 4.75393 | 4.79244 | 4.76135 |   4.875 |   
+| 15-30m          | 4.75857 | 4.73917 | 4.74547 | 4.70489 | 4.84335 |
+| 30-60m          | 4.74094 | 4.71681 | 4.72456 | 4.71531 | 4.79394 |
+| 1-2hrs          | 4.79623 | 4.70899 | 4.73261 | 4.78278 | 4.86265 |
+| over 2hrs       | 4.65185 | 4.67085 | 4.64384 | 4.67743 | 4.70984 |
+
+We can see some slight trends here, namely in the lower ratings for long recipes, and the higher ratings for more complex recipes. 
+Note that the trends are indeed subtle, to help set up expectations for later results.
 
 ### Imputation
 
@@ -87,7 +100,23 @@ However, it turns out that there were no **0** or **NaN** values in the portion 
 
 # Framing a Prediction Problem
 
+For my final prediction problem, my goal is
 
+> To predict **ratings of recipes** by their steps, cook time, and ingredient count using regression.
+
+### Reasoning
+
+I chose to predict ratings as my response variable, since I feel like it's the most relevant metric to people who are writing and reading recipes online.
+In my experience, it's the first number I look at when I'm looking for a recipe, and if I published my own, I'd certainly care about how my recipe is rated by others.
+
+I'm imagining that my results may be useful to someone looking to *publish* a recipe, so it makes sense that they will have the
+steps, cook time, and ingredient count of their recipe available to use to predict their future rating.
+
+### Evaluation
+
+To get a detailed overview, I will be evaluating my models with **Mean Squared Error**, **Mean Absolute Error**, and **R<sup>2</sup> Score**. 
+MSE is a standard metric to evaluate regression models, MAE is nice because it's in the same scale as the ratings, and
+R<sup>2</sup> is valuable since it tells us how much of the variance in the data is explained by my model. 
 
 # Baseline Model
 
