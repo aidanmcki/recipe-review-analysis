@@ -52,7 +52,7 @@ I also decided to drop recipes that took longer than 520 minutes or had more tha
 I later tested without these restrictions and got very poor results. 
 It's safe to say that my analysis was only possible with these exclusions. 
 
-This is the head of the cleaned dataset, with just the relevant columns.
+This is the head of the cleaned dataset, with just the relevant columns. In total, it has 11,026 rows.
 
 | minutes | n_steps | n_ingredients | steps                                                                                                                                 | review_count | avg_rating |
 |---------|----|----|---------------------------------------------------------------------------------------------------------------------------------------|----|----|
@@ -67,6 +67,10 @@ This is the head of the cleaned dataset, with just the relevant columns.
 Embedded below is a plot of the distribution of average ratings for my cleaned dataset.
 
 <iframe src="assets/ratings_distribution.html" width="800" height="600" frameborder="0"> </iframe>
+
+Notice that the vast majority of the average reviews are clustered in the 4-5 range. 
+We can also still see some spikes at the whole numbers, which were even more pronounced before cleaning.
+
 
 ### Bivariate Analysis
 
