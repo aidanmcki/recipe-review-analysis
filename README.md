@@ -66,7 +66,7 @@ This is the head of the cleaned dataset, with just the relevant columns.
 
 Embedded below is a plot of the distribution of average ratings for my cleaned dataset.
 
-
+<iframe src="assets/ratings_distribution.html" width="800" height="600" frameborder="0"> </iframe>
 
 ### Bivariate Analysis
 
