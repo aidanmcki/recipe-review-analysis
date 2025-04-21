@@ -133,14 +133,14 @@ That is, exactly three quantitative features put into a linear regression. The o
 ##### Performance
 
 The model's performance metrics are:
-- Mean Squared Error (MSE): $0.0972$
-- Mean Absolute Error (MAE): $0.2290$
-- R² Score: $0.0116$
-- Coefficients: $[-0.03, -0.00, -0.00]$
+- Mean Squared Error (MSE): 0.0972
+- Mean Absolute Error (MAE): 0.2290
+- R² Score: 0.0116
+- Coefficients: [-0.03, -0.00, -0.00]
 
 Overall, this performance is actually quite **bad**. 
 The MSE and MAE are pretty good, but given that almost all the recipes in the dataset were in the 4-5 star range, a constant model would do almost as well.
-This is backed up by the abysmal R<sup>2</sup> value, which indicates that the model explains only about $1.16$% of the variance in recipe ratings. 
+This is backed up by the abysmal R<sup>2</sup> value, which indicates that the model explains only about 1.16% of the variance in recipe ratings. 
 Further, the coefficient values are close to zero, indicating that these features have minimal predictive power.
 
 ##### Thoughts
@@ -156,7 +156,7 @@ So while these results aren't amazing, there is still a lesson to be learned.
 
 Iterating on the baseline model, I made several key changes.
 
-- I added a quantitative "step complexity" feature, defined by $\frac{\text{Total Length of Steps Text}}{\text{Number of Steps}}$. This was inspired by the idea that more detailed (and thus theoretically better) recipes will have more text per step. 
+- I added a quantitative "step complexity" feature, defined by (Total Length of Steps Text)/(Number of Steps). This was inspired by the idea that more detailed (and thus theoretically better) recipes will have more text per step. 
 - Recalling the quadratic shape of the scatter plot mentioned above, I introduced 2nd degree polynomial features for the
   three quantitative features from the baseline model.
 - I noticed a strong correlation between n_steps and n_ingredients, so I trained a ridge regression model instead of
@@ -170,20 +170,20 @@ All of this occurs within a GridSearchCV, which uses cross-validation to perform
 
 ![img.png](assets/final_model.png)
 
-The grid search provided me with the alpha value $125.0$ out of the search options $[0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 125.0, 150.0]$.
+The grid search provided me with the alpha value 125.0 out of the search options [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 125.0, 150.0].
 
 ##### Performance
 
 The final model's performance metrics are:
 
-- Mean Squared Error: $0.0968$
-- Mean Absolute Error: $0.2284$
-- R² Score: $0.0150$
-- Coefficients: $[ 0.01, -0.04, -0.01, -0.04, -0.00,    0.01,  0.00,    0.00,   -0.00,    0.03]$
+- Mean Squared Error: 0.0968
+- Mean Absolute Error: 0.2284
+- R² Score: 0.0150
+- Coefficients: [ 0.01, -0.04, -0.01, -0.04, -0.00,    0.01,  0.00,    0.00,   -0.00,    0.03]
 
 Unsurprisingly, these results are also rather poor. 
 There are marginal improvements in MSE and MAE, with a larger improvement in R².
-I'm actually very happy with the R² improvement, since it means my new features do a significant $30$% better job at explaining the variance in the ratings. 
+I'm actually very happy with the R² improvement, since it means my new features do a significant 30% better job at explaining the variance in the ratings. 
 There are also many more non-zero coefficients. While they are all still very small in magnitude, they show that I have sucessfully engineered more features with at least some predictive power compared to the baseline.
 
 ##### Final Thoughts
@@ -193,4 +193,4 @@ In fact, I almost gave up and tried to ask and answer an entirely new question w
 However, I want to avoid the "file-drawer problem," a common issue where researchers tend not to share negative
 findings, which gives the impression that all valuable research must have crazy results.
 After thinking on it a while, I realized that even my poor results are an interesting accomplishment that I can be proud of. 
-Learning that predicting recipe ratings is difficult with numeric features is a valuable insight, and being able to explain even $1.5$% of the variance of ratings with just them is quite a feat!
+Learning that predicting recipe ratings is difficult with numeric features is a valuable insight, and being able to explain even 1.5% of the variance of ratings with just them is quite a feat!
